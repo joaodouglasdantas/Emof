@@ -8,7 +8,7 @@
 Abra o terminal na pasta do projeto e rode:
 
 ```bash
-# 1. Instalar dependências de todos os pacotes de uma vez
+# Isso instala dependências de todos os pacotes de uma vez
 npm run install:all
 ```
 
