@@ -90,7 +90,6 @@ export default function Photos() {
         </div>
       )}
 
-      {/* Add photo modal */}
       <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="📸 Adicionar Foto" width={460}>
         <div className="form-group">
           <label className="form-label">Data *</label>
@@ -115,7 +114,6 @@ export default function Photos() {
         </div>
       </Modal>
 
-      {/* View photo modal */}
       <Modal open={viewModal} onClose={() => setViewModal(false)} title={viewPhoto ? `📸 ${fmtFull(viewPhoto.date)}${viewPhoto.note ? ' — ' + viewPhoto.note : ''}` : ''} width={540}>
         {viewPhoto && (
           <>

@@ -23,7 +23,6 @@ export default function Insights() {
     getMealSummary(days14[0], days14[days14.length - 1]).then(setCalData).catch(() => {})
     getWeight().then(setWeights).catch(() => {})
 
-    // Load meal distribution
     Promise.all(days14.map(d =>
       fetch(`/api/meals?date=${d}`).then(r => r.json()).catch(() => ({}))
     )).then(results => {
@@ -37,7 +36,6 @@ export default function Insights() {
     })
   }, [])
 
-  // Calories chart
   useEffect(() => {
     if (!calChartRef.current) return
     if (calChartInst.current) calChartInst.current.destroy()
@@ -72,7 +70,6 @@ export default function Insights() {
     return () => calChartInst.current?.destroy()
   }, [calData, goal])
 
-  // Distribution chart
   useEffect(() => {
     if (!distChartRef.current || !mealDist) return
     if (distChartInst.current) distChartInst.current.destroy()
@@ -92,7 +89,6 @@ export default function Insights() {
     return () => distChartInst.current?.destroy()
   }, [mealDist])
 
-  // Computed stats
   const byDate = Object.fromEntries(calData.map(r => [r.date, r.total_cals]))
   const activeDays = days14.filter(d => byDate[d] > 0)
   const avgCals = activeDays.length ? Math.round(activeDays.reduce((s, d) => s + byDate[d], 0) / activeDays.length) : 0
@@ -120,7 +116,6 @@ export default function Insights() {
         <div className="page-sub">Análise dos últimos 14 dias</div>
       </div>
 
-      {/* Stats */}
       <div className="g4">
         <div className="insight-card card">
           <div style={{ fontSize: 26, marginBottom: 8 }}>🔥</div>

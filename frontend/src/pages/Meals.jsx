@@ -68,7 +68,6 @@ export default function Meals() {
         <div className="page-sub">Registre o que você comeu</div>
       </div>
 
-      {/* Date nav */}
       <div className="date-nav">
         <button className="date-nav-btn" onClick={() => setDate(d => shiftDate(d, -1))}>←</button>
         <div className="date-display">{fmtLong(date)}</div>
@@ -76,7 +75,6 @@ export default function Meals() {
         <button className="btn btn-ghost btn-sm" onClick={() => setDate(today())}>Hoje</button>
       </div>
 
-      {/* Calorie bar */}
       <div className="card mb4">
         <div className="fx-between" style={{ marginBottom: 12 }}>
           <div>
@@ -92,7 +90,6 @@ export default function Meals() {
         </div>
       </div>
 
-      {/* Meal blocks */}
       {MEAL_DEFS.map(m => {
         const items = meals[m.key] || []
         const mc = items.reduce((s, i) => s + (i.total_cals || 0), 0)
@@ -124,7 +121,6 @@ export default function Meals() {
         )
       })}
 
-      {/* Add meal modal */}
       <Modal open={modalOpen} onClose={() => setModalOpen(false)} title={`➕ Adicionar em: ${selectedMeal?.name}`} width={500}>
         <div className="search-wrap">
           <span className="search-icon">🔍</span>

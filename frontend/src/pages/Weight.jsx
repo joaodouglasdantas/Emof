@@ -20,7 +20,6 @@ export default function Weight() {
   const load = useCallback(() => getWeight().then(setWeights).catch(() => {}), [])
   useEffect(() => { load() }, [load])
 
-  // Chart
   useEffect(() => {
     if (!chartRef.current) return
     if (chartInst.current) chartInst.current.destroy()

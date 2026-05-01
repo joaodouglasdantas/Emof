@@ -35,7 +35,6 @@ export default function Dashboard() {
     getMealSummary(days[0], days[days.length - 1]).then(setCalSummary).catch(() => {})
   }, [])
 
-  // Weight mini-chart
   useEffect(() => {
     if (!chartRef.current) return
     if (chartInst.current) chartInst.current.destroy()
@@ -71,7 +70,6 @@ export default function Dashboard() {
         <button className="btn btn-green" onClick={() => navigate('/peso')}>+ Registrar Peso</button>
       </div>
 
-      {/* Stats */}
       <div className="g4">
         <div className="stat-card green">
           <div className="stat-icon">🔥</div>
@@ -101,7 +99,6 @@ export default function Dashboard() {
       </div>
 
       <div className="g2 mt6">
-        {/* Calorie summary */}
         <div className="card">
           <div className="card-title">🔥 Calorias de Hoje</div>
           <div style={{ fontSize: 56, fontWeight: 900, color: pct > 100 ? 'var(--red)' : 'var(--green)', letterSpacing: -2, lineHeight: 1 }}>{todayCals}</div>
@@ -117,7 +114,6 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Weight chart */}
         <div className="card">
           <div className="card-title">📈 Evolução do Peso (últimos 14 dias)</div>
           {weights.length > 0
@@ -127,7 +123,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Meals summary */}
       <div className="card mt6">
         <div className="fx-between mb4">
           <div className="card-title" style={{ marginBottom: 0 }}>🍽️ Resumo de Hoje</div>

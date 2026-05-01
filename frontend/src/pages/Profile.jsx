@@ -37,7 +37,6 @@ export default function Profile() {
       </div>
 
       <div className="g2">
-        {/* Form */}
         <div className="card">
           <div className="card-title">👤 Dados Pessoais</div>
           <div className="form-group">
@@ -86,9 +85,7 @@ export default function Profile() {
           <button className="btn btn-green w-full" onClick={handleSave}>💾 Salvar Perfil</button>
         </div>
 
-        {/* Calculations */}
         <div>
-          {/* BMI */}
           <div className="card mb4">
             <div className="card-title">📐 IMC — Índice de Massa Corporal</div>
             {bmi ? (
@@ -109,7 +106,6 @@ export default function Profile() {
             )}
           </div>
 
-          {/* TDEE */}
           <div className="card">
             <div className="card-title">🔥 Gasto Calórico Estimado</div>
             {bmr ? (

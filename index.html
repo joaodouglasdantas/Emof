@@ -25,7 +25,6 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;display:flex;min-height:100vh;overflow-x:hidden;}
 
-/* ── SIDEBAR ── */
 #sidebar{width:var(--side-w);background:var(--bg2);border-right:1px solid var(--border);padding:0;position:fixed;top:0;left:0;bottom:0;display:flex;flex-direction:column;z-index:100;}
 .logo{padding:28px 24px 24px;border-bottom:1px solid var(--border);}
 .logo-text{font-size:30px;font-weight:900;letter-spacing:-2px;background:linear-gradient(135deg,var(--green),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
@@ -39,18 +38,15 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .nav-bottom-profile{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);}
 .nav-avatar{width:34px;height:34px;background:linear-gradient(135deg,var(--green2),var(--blue));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
 
-/* ── MAIN ── */
 #main{margin-left:var(--side-w);flex:1;padding:36px 40px;max-width:calc(100vw - var(--side-w));min-height:100vh;}
 .section{display:none;animation:fadeIn .2s ease;}
 .section.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── TYPOGRAPHY ── */
 .page-header{margin-bottom:28px;}
 .page-title{font-size:26px;font-weight:800;letter-spacing:-0.5px;}
 .page-sub{color:var(--muted);font-size:14px;margin-top:4px;}
 
-/* ── GRID ── */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;}
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
@@ -59,12 +55,10 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .mt6{margin-top:26px;}
 .mb4{margin-bottom:18px;}
 
-/* ── CARDS ── */
 .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;}
 .card-sm{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;}
 .card-title{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;font-weight:700;margin-bottom:14px;}
 
-/* ── STAT CARDS ── */
 .stat-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px 24px;position:relative;overflow:hidden;}
 .stat-card::before{content:'';position:absolute;top:-30px;right:-30px;width:90px;height:90px;border-radius:50%;opacity:0.08;}
 .stat-card.green::before{background:var(--green);}
@@ -80,14 +74,12 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .c-yellow{color:var(--yellow);}
 .c-muted{color:var(--muted);}
 
-/* ── PROGRESS ── */
 .progress{height:8px;background:var(--border);border-radius:99px;overflow:hidden;margin-top:12px;}
 .progress-fill{height:100%;border-radius:99px;transition:width .5s ease;}
 .pf-green{background:linear-gradient(90deg,var(--green2),var(--green));}
 .pf-red{background:linear-gradient(90deg,var(--red2),var(--red));}
 .pf-yellow{background:linear-gradient(90deg,#cc8800,var(--yellow));}
 
-/* ── FORMS ── */
 .form-group{margin-bottom:15px;}
 .form-label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:6px;font-weight:500;}
 .form-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;color:var(--text);padding:10px 14px;font-size:13.5px;transition:border-color .2s;outline:none;}
@@ -97,7 +89,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .form-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
 select.form-input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%235a5a7a'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer;}
 
-/* ── BUTTONS ── */
 .btn{padding:9px 20px;border-radius:10px;border:none;font-size:13.5px;font-weight:600;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:6px;}
 .btn-green{background:var(--green);color:#000;}
 .btn-green:hover{background:var(--green2);transform:translateY(-1px);}
@@ -107,20 +98,17 @@ select.form-input{appearance:none;background-image:url("data:image/svg+xml,%3Csv
 .btn-ghost:hover{background:#2a2a45;}
 .btn-sm{padding:5px 12px;font-size:12px;border-radius:7px;}
 
-/* ── TABLE ── */
 .table{width:100%;border-collapse:collapse;}
 .table th,.table td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--border);font-size:13.5px;}
 .table th{color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;}
 .table tr:last-child td{border-bottom:none;}
 .table tr:hover td{background:rgba(255,255,255,0.015);}
 
-/* ── BADGE ── */
 .badge{display:inline-block;padding:3px 10px;border-radius:99px;font-size:11.5px;font-weight:600;}
 .badge-green{background:rgba(0,216,132,0.13);color:var(--green);}
 .badge-red{background:rgba(255,71,87,0.13);color:var(--red);}
 .badge-yellow{background:rgba(255,211,42,0.13);color:var(--yellow);}
 
-/* ── MODAL ── */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;pointer-events:none;transition:opacity .2s;backdrop-filter:blur(4px);}
 .modal-overlay.open{opacity:1;pointer-events:all;}
 .modal{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:30px;width:500px;max-width:95vw;max-height:90vh;overflow-y:auto;transform:translateY(24px) scale(.97);transition:all .2s;}
@@ -130,10 +118,8 @@ select.form-input{appearance:none;background-image:url("data:image/svg+xml,%3Csv
 .modal-close{background:var(--border);border:none;color:var(--muted);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center;transition:all .15s;}
 .modal-close:hover{background:rgba(255,71,87,0.2);color:var(--red);}
 
-/* ── CHART ── */
 .chart-wrap{position:relative;height:260px;}
 
-/* ── MEALS ── */
 .date-nav{display:flex;align-items:center;gap:12px;margin-bottom:22px;}
 .date-nav-btn{background:var(--card);border:1px solid var(--border);color:var(--text);width:36px;height:36px;border-radius:9px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .15s;}
 .date-nav-btn:hover{border-color:var(--green);color:var(--green);}
@@ -148,69 +134,57 @@ select.form-input{appearance:none;background-image:url("data:image/svg+xml,%3Csv
 .food-row-cals{font-size:13px;color:var(--green);font-weight:600;margin-right:10px;}
 .no-food{font-size:13px;color:var(--muted);padding:6px 0;}
 
-/* ── PHOTOS ── */
 .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:14px;}
 .photo-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .15s,border-color .15s;}
 .photo-card:hover{transform:translateY(-3px);border-color:var(--green);}
 .photo-card img{width:100%;height:165px;object-fit:cover;display:block;}
 .photo-info{padding:8px 12px;font-size:12px;color:var(--muted);}
 
-/* ── INSIGHTS ── */
 .insight-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;}
 .insight-big{font-size:34px;font-weight:900;line-height:1;letter-spacing:-1px;}
 .insight-label{font-size:12px;color:var(--muted);margin-top:6px;}
 
-/* ── BMI GAUGE ── */
 .bmi-gauge{height:20px;border-radius:10px;background:linear-gradient(90deg,#4499ff 0%,#00d884 30%,#ffd32a 60%,#ff8800 80%,#ff4757 100%);position:relative;margin:16px 0 6px;}
 .bmi-needle{position:absolute;top:-5px;width:4px;height:30px;background:#fff;border-radius:2px;transform:translateX(-50%);transition:left .5s;box-shadow:0 0 6px rgba(0,0,0,0.5);}
 
-/* ── FOOD SEARCH LIST ── */
 .food-search-item{padding:10px 14px;border-radius:9px;cursor:pointer;border:1px solid transparent;margin-bottom:5px;transition:all .12s;}
 .food-search-item:hover{background:rgba(255,255,255,0.03);}
 .food-search-item.selected{border-color:var(--green);background:rgba(0,216,132,0.07);}
 .food-search-item-name{font-size:13.5px;font-weight:500;}
 .food-search-item-info{font-size:11.5px;color:var(--muted);margin-top:2px;}
 
-/* ── TAG ── */
 .tag-row{display:flex;gap:8px;flex-wrap:wrap;}
 .tag{padding:6px 14px;border-radius:99px;border:1px solid var(--border);font-size:12.5px;cursor:pointer;transition:all .15s;background:transparent;color:var(--muted);}
 .tag.on{border-color:var(--green);color:var(--green);background:rgba(0,216,132,0.1);}
 
-/* ── SEARCH ── */
 .search-wrap{position:relative;margin-bottom:16px;}
 .search-wrap .form-input{padding-left:40px;}
 .search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:16px;pointer-events:none;}
 
-/* ── FLEX UTILS ── */
 .fx{display:flex;align-items:center;}
 .fx-between{display:flex;align-items:center;justify-content:space-between;}
 .fx-gap{display:flex;align-items:center;gap:12px;}
 .fx-end{display:flex;align-items:center;justify-content:flex-end;gap:10px;}
 .w-full{width:100%;}
 
-/* ── EMPTY STATE ── */
 .empty{text-align:center;padding:52px 24px;color:var(--muted);}
 .empty-icon{font-size:48px;margin-bottom:14px;}
 .empty h3{font-size:16px;color:var(--text);margin-bottom:6px;}
 .empty p{font-size:13.5px;}
 
-/* ── TOAST ── */
 .toast{position:fixed;bottom:28px;right:28px;background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:14px 20px;font-size:13.5px;z-index:9999;transform:translateY(80px);opacity:0;transition:all .3s;border-left:4px solid var(--green);max-width:320px;}
 .toast.show{transform:translateY(0);opacity:1;}
 .toast.error{border-left-color:var(--red);}
 
-/* ── SCROLLBAR ── */
 ::-webkit-scrollbar{width:5px;}
 ::-webkit-scrollbar-track{background:transparent;}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px;}
 
-/* ── SECTION DIVIDER ── */
 hr.div{border:none;border-top:1px solid var(--border);margin:16px 0;}
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════ SIDEBAR ══════════════════════════════ -->
 <nav id="sidebar">
   <div class="logo">
     <div class="logo-text">emof</div>
@@ -233,10 +207,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:16px 0;}
   </div>
 </nav>
 
-<!-- ══════════════════════════════ MAIN ══════════════════════════════ -->
 <main id="main">
 
-<!-- ─── DASHBOARD ─── -->
 <section class="section active" id="sec-dashboard">
   <div class="page-header fx-between">
     <div>
@@ -265,7 +237,6 @@ hr.div{border:none;border-top:1px solid var(--border);margin:16px 0;}
   </div>
 </section>
 
-<!-- ─── REFEIÇÕES ─── -->
 <section class="section" id="sec-refeicoes">
   <div class="page-header">
     <div class="page-title">Refeições</div>
@@ -281,7 +252,6 @@ hr.div{border:none;border-top:1px solid var(--border);margin:16px 0;}
   <div id="meals-container"></div>
 </section>
 
-<!-- ─── ALIMENTOS ─── -->
 <section class="section" id="sec-alimentos">
   <div class="page-header fx-between">
     <div>
@@ -307,7 +277,6 @@ hr.div{border:none;border-top:1px solid var(--border);margin:16px 0;}
   </div>
 </section>
 
-<!-- ─── PESO ─── -->
 <section class="section" id="sec-peso">
   <div class="page-header fx-between">
     <div>
@@ -340,7 +309,6 @@ hr.div{border:none;border-top:1px solid var(--border);margin:16px 0;}
   </div>
 </section>
 
-<!-- ─── FOTOS ─── -->
 <section class="section" id="sec-fotos">
   <div class="page-header fx-between">
     <div>
@@ -357,7 +325,6 @@ hr.div{border:none;border-top:1px solid var(--border);margin:16px 0;}
   </div>
 </section>
 
-<!-- ─── INSIGHTS ─── -->
 <section class="section" id="sec-insights">
   <div class="page-header">
     <div class="page-title">Insights</div>
@@ -380,7 +347,6 @@ hr.div{border:none;border-top:1px solid var(--border);margin:16px 0;}
   </div>
 </section>
 
-<!-- ─── PERFIL ─── -->
 <section class="section" id="sec-perfil">
   <div class="page-header">
     <div class="page-title">Perfil</div>
@@ -447,9 +413,6 @@ hr.div{border:none;border-top:1px solid var(--border);margin:16px 0;}
 
 </main>
 
-<!-- ══════════════════════════════ MODALS ══════════════════════════════ -->
-
-<!-- Novo Alimento -->
 <div class="modal-overlay" id="modal-food">
   <div class="modal">
     <div class="modal-header">
@@ -506,7 +469,6 @@ hr.div{border:none;border-top:1px solid var(--border);margin:16px 0;}
   </div>
 </div>
 
-<!-- Adicionar à Refeição -->
 <div class="modal-overlay" id="modal-add-meal">
   <div class="modal">
     <div class="modal-header">
@@ -546,7 +508,6 @@ hr.div{border:none;border-top:1px solid var(--border);margin:16px 0;}
   </div>
 </div>
 
-<!-- Registrar Peso -->
 <div class="modal-overlay" id="modal-weight">
   <div class="modal" style="width:420px;">
     <div class="modal-header">
@@ -572,7 +533,6 @@ hr.div{border:none;border-top:1px solid var(--border);margin:16px 0;}
   </div>
 </div>
 
-<!-- Adicionar Foto -->
 <div class="modal-overlay" id="modal-photo">
   <div class="modal" style="width:460px;">
     <div class="modal-header">
@@ -601,7 +561,6 @@ hr.div{border:none;border-top:1px solid var(--border);margin:16px 0;}
   </div>
 </div>
 
-<!-- Ver Foto -->
 <div class="modal-overlay" id="modal-photo-view">
   <div class="modal" style="width:540px;">
     <div class="modal-header">
@@ -617,21 +576,16 @@ hr.div{border:none;border-top:1px solid var(--border);margin:16px 0;}
   </div>
 </div>
 
-<!-- Toast -->
 <div id="toast" class="toast"></div>
 
-<!-- ══════════════════════════════ SCRIPT ══════════════════════════════ -->
 <script>
-// ══════════════════════════════════════════
-//  STATE & PERSISTENCE
-// ══════════════════════════════════════════
 const KEY = 'emof_data_v2';
 let S = {
   profile: { name:'', sex:'male', age:'', weight:'', height:'', activity:1.55, goal:'' },
   foods: [],
-  meals: {},      // { 'YYYY-MM-DD': { breakfast:[], lunch:[], dinner:[], snacks:[] } }
-  weightLog: [],  // { date, weight, note }
-  photos: []      // { date, src, note }
+  meals: {},
+  weightLog: [],
+  photos: []
 };
 
 function load() {
@@ -641,7 +595,6 @@ function save() {
   try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){ toast('Erro ao salvar',true); }
 }
 
-// ── DEFAULT FOODS ──
 const DEFAULT_FOODS = [
   {id:'df1', name:'Arroz branco cozido',    qty:100, unit:'g',           cals:130, protein:2.7,  carbs:28,   fat:0.3},
   {id:'df2', name:'Feijão cozido',          qty:100, unit:'g',           cals:77,  protein:4.8,  carbs:13.6, fat:0.5},
@@ -660,9 +613,6 @@ const DEFAULT_FOODS = [
   {id:'df15',name:'Whey Protein',           qty:30,  unit:'g',           cals:113, protein:22,   carbs:3,    fat:2},
 ];
 
-// ══════════════════════════════════════════
-//  NAVIGATION
-// ══════════════════════════════════════════
 let currentSection = 'dashboard';
 
 function go(sec) {
@@ -677,9 +627,6 @@ function go(sec) {
   if (renders[sec]) renders[sec]();
 }
 
-// ══════════════════════════════════════════
-//  DATE HELPERS
-// ══════════════════════════════════════════
 let mealDate = today();
 
 function today() { return new Date().toISOString().split('T')[0]; }
@@ -700,9 +647,6 @@ function shiftDate(delta) {
 }
 function goToday() { mealDate = today(); renderMeals(); }
 
-// ══════════════════════════════════════════
-//  CALCULATIONS
-// ══════════════════════════════════════════
 function calcBMR(p) {
   const w=parseFloat(p.weight), h=parseFloat(p.height), a=parseInt(p.age);
   if(!w||!h||!a) return 0;
@@ -725,9 +669,6 @@ function dayCals(date) {
   return Object.values(dm).reduce((s,items) => s + (items||[]).reduce((ss,i) => ss+(i.totalCals||0), 0), 0);
 }
 
-// ══════════════════════════════════════════
-//  DASHBOARD
-// ══════════════════════════════════════════
 const CH = {};
 
 function renderDashboard() {
@@ -743,7 +684,6 @@ function renderDashboard() {
   const lw = sorted[0]?.weight ?? null;
   const bmi = lw && S.profile.height ? calcBMI(lw, S.profile.height) : null;
 
-  // Stats grid
   document.getElementById('dash-stats').innerHTML = `
     <div class="stat-card green">
       <div class="stat-icon">🔥</div>
@@ -772,7 +712,6 @@ function renderDashboard() {
     </div>
   `;
 
-  // Calorie summary
   const col = pct>100?'var(--red)':'var(--green)';
   document.getElementById('dash-cal-summary').innerHTML = `
     <div style="font-size:56px;font-weight:900;color:${col};letter-spacing:-2px;line-height:1">${cals}</div>
@@ -788,7 +727,6 @@ function renderDashboard() {
     </div>
   `;
 
-  // Meals summary
   const dm = S.meals[t] || {};
   const mealDefs = [{k:'breakfast',i:'☀️',n:'Café da Manhã'},{k:'lunch',i:'🌞',n:'Almoço'},{k:'dinner',i:'🌙',n:'Jantar'},{k:'snacks',i:'🍎',n:'Lanches'}];
   let mHtml='', hasAny=false;
@@ -806,7 +744,6 @@ function renderDashboard() {
   if(!hasAny) mHtml='<div class="empty" style="padding:28px"><div class="empty-icon">🍽️</div><p>Nenhuma refeição registrada hoje. <span style="color:var(--green);cursor:pointer" onclick="go(\'refeicoes\')">Registrar agora →</span></p></div>';
   document.getElementById('dash-meals-summary').innerHTML = mHtml;
 
-  // Weight chart (mini)
   drawWeightChart('chart-dash-weight', 14);
 }
 
@@ -841,9 +778,6 @@ function drawWeightChart(id, maxPts) {
   });
 }
 
-// ══════════════════════════════════════════
-//  REFEIÇÕES
-// ══════════════════════════════════════════
 const MEAL_DEFS = [
   {key:'breakfast', name:'Café da Manhã', icon:'☀️'},
   {key:'lunch',     name:'Almoço',        icon:'🌞'},
@@ -968,9 +902,6 @@ function removeMealItem(key, idx) {
   save(); renderMeals();
 }
 
-// ══════════════════════════════════════════
-//  ALIMENTOS
-// ══════════════════════════════════════════
 function renderFoods() {
   const q = (document.getElementById('food-search')?.value||'').toLowerCase();
   const items = S.foods.filter(f=>f.name.toLowerCase().includes(q));
@@ -1013,9 +944,6 @@ function delFood(id) {
   save(); renderFoods(); toast('Alimento removido');
 }
 
-// ══════════════════════════════════════════
-//  PESO
-// ══════════════════════════════════════════
 function renderWeight() {
   const sorted = [...S.weightLog].sort((a,b)=>b.date.localeCompare(a.date));
   const empty = document.getElementById('weight-empty');
@@ -1076,9 +1004,6 @@ function delWeight(date) {
   save(); renderWeight(); toast('Registro removido');
 }
 
-// ══════════════════════════════════════════
-//  FOTOS
-// ══════════════════════════════════════════
 let photoB64=null, viewPhotoIdx=null;
 
 function renderPhotos() {
@@ -1138,9 +1063,6 @@ function deletePhoto() {
   save(); closeModal('modal-photo-view'); renderPhotos(); toast('Foto removida');
 }
 
-// ══════════════════════════════════════════
-//  INSIGHTS
-// ══════════════════════════════════════════
 function renderInsights() {
   const T=today();
   const days14=[];
@@ -1179,7 +1101,6 @@ function renderInsights() {
     </div>
   `;
 
-  // Calories bar chart
   const cCtx=document.getElementById('chart-cals-day');
   if(cCtx){
     if(CH['cals']){CH['cals'].destroy();delete CH['cals'];}
@@ -1196,7 +1117,6 @@ function renderInsights() {
     });
   }
 
-  // Meal distribution donut
   const dist={breakfast:0,lunch:0,dinner:0,snacks:0};
   days14.forEach(d=>{const dm=S.meals[d]||{};Object.keys(dist).forEach(k=>{(dm[k]||[]).forEach(i=>{dist[k]+=i.totalCals||0;});});});
   const dCtx=document.getElementById('chart-meal-dist');
@@ -1217,7 +1137,6 @@ function renderInsights() {
     }
   }
 
-  // Tips
   const tips=[];
   if(avgCals>0&&avgCals<goal*0.75) tips.push({i:'⚠️',t:'Sua ingestão está muito abaixo da meta. Um déficit excessivo pode prejudicar sua saúde e metabolismo.'});
   if(avgCals>goal*1.15) tips.push({i:'🔴',t:'Sua média calórica está acima da meta. Tente reduzir porções ou substituir alimentos calóricos.'});
@@ -1235,9 +1154,6 @@ function renderInsights() {
     </div>`).join('');
 }
 
-// ══════════════════════════════════════════
-//  PERFIL
-// ══════════════════════════════════════════
 function renderProfile() {
   const p=S.profile;
   document.getElementById('p-name').value     = p.name||'';
@@ -1323,9 +1239,6 @@ function saveProfile() {
   toast('Perfil salvo com sucesso!');
 }
 
-// ══════════════════════════════════════════
-//  MODAL
-// ══════════════════════════════════════════
 function openModal(id) {
   document.getElementById(id).classList.add('open');
   if(id==='modal-weight'){
@@ -1341,9 +1254,6 @@ document.querySelectorAll('.modal-overlay').forEach(o=>{
 });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') document.querySelectorAll('.modal-overlay.open').forEach(o=>o.classList.remove('open')); });
 
-// ══════════════════════════════════════════
-//  TOAST
-// ══════════════════════════════════════════
 let toastTm;
 function toast(msg, err=false) {
   const el=document.getElementById('toast');
@@ -1353,20 +1263,9 @@ function toast(msg, err=false) {
   toastTm=setTimeout(()=>el.classList.remove('show'),3200);
 }
 
-// ══════════════════════════════════════════
-//  INIT
-// ══════════════════════════════════════════
 load();
-
-// Add default foods if empty
-if(!S.foods.length) {
-  S.foods = [...DEFAULT_FOODS];
-  save();
-}
-
-// Update profile name in sidebar
+if(!S.foods.length) { S.foods = [...DEFAULT_FOODS]; save(); }
 if(S.profile.name) document.getElementById('nav-profile-name').textContent = S.profile.name;
-
 renderDashboard();
 </script>
 </body>
