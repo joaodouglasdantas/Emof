@@ -1,4 +1,8 @@
-# 🚀 Como Rodar o Emof
+# Emof
+
+Emof — Controle de calorias, peso e evolução corporal. Registre refeições, acompanhe seu peso, veja gráficos de progresso e receba insights baseados no seu perfil e metas.
+
+## Como Rodar o Emof
 
 ## Pré-requisitos
 - [Node.js 18+](https://nodejs.org) instalado
