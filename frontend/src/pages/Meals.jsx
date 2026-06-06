@@ -111,7 +111,7 @@ export default function Meals() {
               : items.map(item => (
                 <div key={item.id} className="food-row">
                   <div>
-                    <div className="food-row-name">{item.food_name}</div>
+                    <div className="food-row-name" title={item.food_name}>{item.food_name}</div>
                     <div className="food-row-info">{item.qty} {item.unit}</div>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -137,7 +137,7 @@ export default function Meals() {
             ? <div style={{ color: 'var(--muted)', fontSize: 13, padding: '8px 0' }}>Nenhum alimento encontrado.</div>
             : filtered.map(f => (
               <div key={f.id} className={`food-search-item ${pickedFood?.id === f.id ? 'selected' : ''}`} onClick={() => { setPickedFood(f); setQty(1) }}>
-                <div className="food-search-item-name">{f.name}</div>
+                <div className="food-search-item-name" title={f.name}>{f.name}</div>
                 <div className="food-search-item-info">{f.qty} {f.unit} = {f.cals} kcal</div>
               </div>
             ))
