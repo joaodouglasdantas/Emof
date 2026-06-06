@@ -27,7 +27,12 @@ export default function Profile() {
   const tdee = Math.round(calcTDEE(form))
   const bmi  = form.weight && form.height ? calcBMI(form.weight, form.height) : null
   const cat  = bmi ? bmiCategory(bmi) : null
-  const bmiPct = bmi ? Math.min(100, Math.max(0, ((bmi - 15) / (45 - 15)) * 100)) : 50
+  const bmiPct = bmi ? (() => {
+    if (bmi <= 18.5) return ((bmi - 15) / (18.5 - 15)) * 30
+    if (bmi <= 25)   return 30 + ((bmi - 18.5) / (25 - 18.5)) * 30
+    if (bmi <= 30)   return 60 + ((bmi - 25) / (30 - 25)) * 20
+    return Math.min(100, 80 + ((bmi - 30) / (15)) * 20)
+  })() : 50
   const hm = parseFloat(form.height) / 100
 
   return (
