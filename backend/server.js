@@ -220,6 +220,6 @@ app.delete('/api/photos/:id', (req, res) => {
   res.json({ ok: true })
 })
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Emof backend rodando em http://localhost:${PORT}`)
 })
