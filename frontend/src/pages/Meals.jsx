@@ -23,7 +23,7 @@ export default function Meals() {
   const [selectedMeal, setSelectedMeal] = useState(null)
   const [search, setSearch] = useState('')
   const [pickedFood, setPickedFood] = useState(null)
-  const [qty, setQty] = useState(1)
+  const [qty, setQty] = useState('1')
 
   const goal = profile?.goal || calcTDEE(profile || {}) || 2000
   const totalCals = Object.values(meals).flat().reduce((s, i) => s + (i.total_cals || 0), 0)
@@ -39,18 +39,20 @@ export default function Meals() {
 
   const openAdd = (mealKey, mealName) => {
     setSelectedMeal({ key: mealKey, name: mealName })
-    setSearch(''); setPickedFood(null); setQty(1)
+    setSearch(''); setPickedFood(null); setQty('1')
     setModalOpen(true)
   }
 
   const handleAdd = async () => {
+    const qtyNum = parseFloat(qty)
     if (!pickedFood) return showToast('Selecione um alimento', 'error')
+    if (!qtyNum || qtyNum <= 0) return showToast('Informe uma quantidade válida', 'error')
     try {
       await addMealEntry({
         date, meal_type: selectedMeal.key,
         food_id: pickedFood.id, food_name: pickedFood.name,
-        qty, unit: pickedFood.unit,
-        total_cals: Math.round(qty * pickedFood.cals),
+        qty: qtyNum, unit: pickedFood.unit,
+        total_cals: Math.round(qtyNum * pickedFood.cals),
       })
       loadMeals(); setModalOpen(false); showToast('Adicionado à refeição!')
     } catch { showToast('Erro ao adicionar', 'error') }
@@ -142,6 +144,7 @@ export default function Meals() {
           }
         </div>
         {pickedFood && (
+
           <>
             <hr className="div" />
             <div style={{ fontSize: 12.5, color: 'var(--muted)', marginBottom: 10 }}>
@@ -151,7 +154,7 @@ export default function Meals() {
               <div className="form-group">
                 <label className="form-label">Quantidade</label>
                 <input className="form-input" type="number" step="0.5" min="0.1" value={qty}
-                  onChange={e => setQty(parseFloat(e.target.value) || 1)} />
+                  onChange={e => setQty(e.target.value)} />
               </div>
               <div className="form-group">
                 <label className="form-label">Unidade</label>
@@ -159,7 +162,7 @@ export default function Meals() {
               </div>
             </div>
             <div style={{ fontSize: 13, color: 'var(--muted)', marginBottom: 16 }}>
-              Calorias: <strong style={{ color: 'var(--green)', fontSize: 16 }}>{Math.round(qty * pickedFood.cals)}</strong> kcal
+              Calorias: <strong style={{ color: 'var(--green)', fontSize: 16 }}>{parseFloat(qty) > 0 ? Math.round(parseFloat(qty) * pickedFood.cals) : '—'}</strong> kcal
             </div>
             <div className="fx-end">
               <button className="btn btn-ghost" onClick={() => setModalOpen(false)}>Cancelar</button>
