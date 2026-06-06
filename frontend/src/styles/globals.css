@@ -234,30 +234,56 @@ hr.div { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
 @media (max-width: 768px) {
   :root { --side-w: 0px; }
 
+  /* Layout principal */
   .main-content {
     margin-left: 0;
     padding: 20px 16px calc(64px + env(safe-area-inset-bottom, 0px));
   }
 
-  .g2, .g3, .g4   { grid-template-columns: 1fr; }
+  /* Grids colapsam pra 1 coluna */
+  .g2, .g3, .g4        { grid-template-columns: 1fr; }
   .form-row, .form-row3 { grid-template-columns: 1fr; }
 
+  /* Cabeçalhos de página */
   .page-header.fx-between { flex-direction: column; align-items: flex-start; gap: 12px; }
-
   .stat-value { font-size: 26px; }
   .page-title { font-size: 22px; }
 
+  /* Date nav */
   .date-nav { flex-wrap: wrap; }
 
+  /* Toast acima do bottom nav */
   .toast {
     bottom: calc(72px + env(safe-area-inset-bottom, 0px));
     right: 16px; left: 16px; max-width: none;
   }
 
+  /* Modal como bottom sheet */
+  .modal-overlay { align-items: flex-end; }
+  .modal {
+    width: 100%; max-width: 100%;
+    border-radius: 22px 22px 0 0;
+    padding: 24px 20px calc(24px + env(safe-area-inset-bottom, 0px));
+    max-height: 92vh;
+  }
+
+  /* Meal block: quebra linha se apertar */
+  .meal-block-header { flex-wrap: wrap; }
+  .meal-block-name   { flex: 1; }
+
+  /* Touch targets maiores */
+  .btn          { min-height: 42px; }
+  .btn-sm       { min-height: 36px; }
+  .date-nav-btn { width: 42px; height: 42px; }
+
+  /* Tabela: esconder colunas menos importantes (mantém a última = delete) */
+  .table th:nth-child(n+4):not(:last-child),
+  .table td:nth-child(n+4):not(:last-child) { display: none; }
+
   /* Bottom navigation */
   .sidebar {
     width: 100%;
-    height: calc(56px + env(safe-area-inset-bottom, 0px));
+    height: calc(58px + env(safe-area-inset-bottom, 0px));
     top: auto; bottom: 0; left: 0; right: 0;
     flex-direction: row;
     border-right: none; border-top: 1px solid var(--border);
@@ -271,38 +297,19 @@ hr.div { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
   }
   .sidebar-link {
     flex-direction: column; justify-content: center;
-    padding: 6px 4px; gap: 2px;
+    padding: 6px 4px; gap: 3px;
     border-left: none; border-top: 2px solid transparent;
-    flex: 1; min-height: 56px; text-align: center;
+    flex: 1; min-height: 58px; text-align: center;
     min-width: 0;
   }
-  .sidebar-link-label { font-size: 9.5px; line-height: 1.1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sidebar-link-label   { font-size: 9.5px; line-height: 1.1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .sidebar-link--active { border-left: none; border-top-color: var(--green); }
-  .sidebar-link-icon    { font-size: 19px; min-width: auto; line-height: 1; }
+  .sidebar-link-icon    { font-size: 20px; min-width: auto; line-height: 1; }
 }
 
+/* Em telas muito pequenas (<400px), ocultar labels do nav pra dar espaço */
 @media (max-width: 400px) {
   .sidebar-link-label { display: none; }
-  .sidebar-link { justify-content: center; gap: 0; }
-  .sidebar-link-icon { font-size: 22px; }
-
-  /* Modal como bottom sheet no mobile */
-  .modal-overlay { align-items: flex-end; }
-  .modal {
-    width: 100%; max-width: 100%; border-radius: 20px 20px 0 0;
-    padding: 20px 20px calc(20px + env(safe-area-inset-bottom, 0px));
-    max-height: 92vh;
-  }
-
-  /* Meal block header: quebra linha se apertar */
-  .meal-block-header { flex-wrap: wrap; }
-  .meal-block-name   { flex: 1; }
-
-  /* Botões com touch target mínimo */
-  .btn { min-height: 40px; }
-  .date-nav-btn { width: 40px; height: 40px; }
-  .btn-sm { min-height: 34px; }
-
-  /* Tabela: ocultar colunas menos importantes */
-  .table th:nth-child(n+4), .table td:nth-child(n+4) { display: none; }
+  .sidebar-link       { justify-content: center; gap: 0; }
+  .sidebar-link-icon  { font-size: 22px; }
 }
