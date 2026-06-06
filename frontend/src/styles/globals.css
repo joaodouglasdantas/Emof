@@ -90,8 +90,9 @@ select.form-input {
 
 .table-wrap { display: block; overflow-x: auto; }
 .table { width: 100%; border-collapse: collapse; }
-.table th, .table td { padding: 11px 16px; text-align: left; border-bottom: 1px solid var(--border); font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.table th:first-child, .table td:first-child { width: 99%; }
+.table th, .table td { padding: 11px 16px; text-align: left; border-bottom: 1px solid var(--border); font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
+.table th:first-child, .table td:first-child { width: 99%; max-width: 320px; }
+.table th:last-child, .table td:last-child { max-width: none; }
 .table th { color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
 .table tr:last-child td { border-bottom: none; }
 .table tr:hover td { background: rgba(255,255,255,.015); }

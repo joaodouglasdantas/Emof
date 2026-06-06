@@ -146,7 +146,7 @@ export default function Weight() {
                     <td><strong>{w.weight} kg</strong></td>
                     <td>{diff !== null ? <span style={{ color: diff > 0 ? 'var(--red)' : 'var(--green)' }}>{diff > 0 ? '+' : ''}{diff} kg</span> : '—'}</td>
                     <td>{bmi}</td>
-                    <td style={{ color: 'var(--muted)', fontSize: 12 }}>{w.note || '—'}</td>
+                    <td style={{ color: 'var(--muted)', fontSize: 12 }} title={w.note || undefined}>{w.note || '—'}</td>
                     <td>
                       <button className="btn btn-red btn-sm" onClick={() => handleDelete(w.date)}>
                         <Trash2 size={13} />

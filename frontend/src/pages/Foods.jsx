@@ -85,7 +85,7 @@ export default function Foods() {
             <tbody>
               {filtered.map(f => (
                 <tr key={f.id}>
-                  <td><strong>{f.name}</strong></td>
+                  <td title={f.name}><strong>{f.name}</strong></td>
                   <td>{f.qty} {f.unit}</td>
                   <td><span className="badge badge-green">{f.cals} kcal</span></td>
                   <td>{f.protein ? f.protein + 'g' : '—'}</td>
