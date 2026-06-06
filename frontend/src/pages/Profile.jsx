@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { User, Activity, Flame, Save, TrendingDown, TrendingUp, Minus } from 'lucide-react'
 import { updateProfile } from '../api'
 import { useProfile } from '../App'
 import { useToast } from '../App'
@@ -38,7 +39,9 @@ export default function Profile() {
 
       <div className="g2">
         <div className="card">
-          <div className="card-title">👤 Dados Pessoais</div>
+          <div className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <User size={14} /> Dados Pessoais
+          </div>
           <div className="form-group">
             <label className="form-label">Nome</label>
             <input className="form-input" placeholder="Seu nome" value={form.name} onChange={set('name')} />
@@ -69,11 +72,11 @@ export default function Profile() {
           <div className="form-group">
             <label className="form-label">Nível de Atividade</label>
             <select className="form-input" value={form.activity} onChange={set('activity')}>
-              <option value="1.2">😴 Sedentário — pouco ou sem exercício</option>
-              <option value="1.375">🚶 Levemente ativo — 1-3x/semana</option>
-              <option value="1.55">🏃 Moderadamente ativo — 3-5x/semana</option>
-              <option value="1.725">💪 Muito ativo — 6-7x/semana</option>
-              <option value="1.9">🔥 Extremamente ativo — 2x/dia</option>
+              <option value="1.2">Sedentário — pouco ou sem exercício</option>
+              <option value="1.375">Levemente ativo — 1-3x/semana</option>
+              <option value="1.55">Moderadamente ativo — 3-5x/semana</option>
+              <option value="1.725">Muito ativo — 6-7x/semana</option>
+              <option value="1.9">Extremamente ativo — 2x/dia</option>
             </select>
           </div>
           <div className="form-group">
@@ -82,12 +85,16 @@ export default function Profile() {
             </label>
             <input className="form-input" type="number" placeholder="Ex: 1800" value={form.goal} onChange={set('goal')} />
           </div>
-          <button className="btn btn-green w-full" onClick={handleSave}>💾 Salvar Perfil</button>
+          <button className="btn btn-green w-full" onClick={handleSave} style={{ gap: 8 }}>
+            <Save size={15} /> Salvar Perfil
+          </button>
         </div>
 
         <div>
           <div className="card mb4">
-            <div className="card-title">📐 IMC — Índice de Massa Corporal</div>
+            <div className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <Activity size={14} /> IMC — Índice de Massa Corporal
+            </div>
             {bmi ? (
               <>
                 <div style={{ fontSize: 54, fontWeight: 900, color: cat.color, letterSpacing: -2, lineHeight: 1 }}>{bmi.toFixed(1)}</div>
@@ -107,7 +114,9 @@ export default function Profile() {
           </div>
 
           <div className="card">
-            <div className="card-title">🔥 Gasto Calórico Estimado</div>
+            <div className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <Flame size={14} /> Gasto Calórico Estimado
+            </div>
             {bmr ? (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 14, fontSize: 13.5 }}>
                 <div className="fx-between">
@@ -125,9 +134,15 @@ export default function Profile() {
                   <strong style={{ fontSize: 22, color: 'var(--green)' }}>{tdee} kcal</strong>
                 </div>
                 <div style={{ padding: 12, background: 'rgba(255,255,255,.03)', borderRadius: 10, fontSize: 12, color: 'var(--muted)', lineHeight: 2 }}>
-                  📉 Perda de 0,5 kg/sem: <strong style={{ color: 'var(--text)' }}>{tdee - 500} kcal/dia</strong><br />
-                  ⚖️ Manutenção: <strong style={{ color: 'var(--text)' }}>{tdee} kcal/dia</strong><br />
-                  📈 Ganho de 0,5 kg/sem: <strong style={{ color: 'var(--text)' }}>{tdee + 500} kcal/dia</strong>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <TrendingDown size={12} /> Perda de 0,5 kg/sem: <strong style={{ color: 'var(--text)' }}>{tdee - 500} kcal/dia</strong>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <Minus size={12} /> Manutenção: <strong style={{ color: 'var(--text)' }}>{tdee} kcal/dia</strong>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <TrendingUp size={12} /> Ganho de 0,5 kg/sem: <strong style={{ color: 'var(--text)' }}>{tdee + 500} kcal/dia</strong>
+                  </div>
                 </div>
               </div>
             ) : (

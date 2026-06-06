@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import { Camera, Scale, Trash2 } from 'lucide-react'
 import Modal from '../components/Modal'
 import { getPhotos, addPhoto, deletePhoto } from '../api'
 import { getWeight } from '../api'
@@ -72,7 +73,7 @@ export default function Photos() {
 
       {photos.length === 0 ? (
         <div className="empty">
-          <div className="empty-icon">📸</div>
+          <div className="empty-icon"><Camera size={48} strokeWidth={1} /></div>
           <h3>Nenhuma foto adicionada</h3>
           <p>Documente sua evolução com fotos periódicas</p>
         </div>
@@ -90,7 +91,7 @@ export default function Photos() {
         </div>
       )}
 
-      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="📸 Adicionar Foto" width={460}>
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="Adicionar Foto" width={460}>
         <div className="form-group">
           <label className="form-label">Data *</label>
           <input className="form-input" type="date" value={form.date} onChange={e => setForm(f => ({ ...f, date: e.target.value }))} />
@@ -114,16 +115,18 @@ export default function Photos() {
         </div>
       </Modal>
 
-      <Modal open={viewModal} onClose={() => setViewModal(false)} title={viewPhoto ? `📸 ${fmtFull(viewPhoto.date)}${viewPhoto.note ? ' — ' + viewPhoto.note : ''}` : ''} width={540}>
+      <Modal open={viewModal} onClose={() => setViewModal(false)} title={viewPhoto ? fmtFull(viewPhoto.date) + (viewPhoto.note ? ' — ' + viewPhoto.note : '') : ''} width={540}>
         {viewPhoto && (
           <>
             <img src={`/uploads/${viewPhoto.filename}`} style={{ width: '100%', borderRadius: 14, maxHeight: 420, objectFit: 'cover', marginBottom: 12 }} alt={viewPhoto.note} />
             {viewPhoto.note && <div style={{ fontSize: 13.5, color: 'var(--muted)', marginBottom: 14 }}>{viewPhoto.note}</div>}
             <div className="fx-between">
-              <span style={{ fontSize: 13, color: 'var(--muted)' }}>
-                {(() => { const w = closestWeight(viewPhoto.date); return w ? `⚖️ Peso: ${w.weight} kg` : '' })()}
+              <span style={{ fontSize: 13, color: 'var(--muted)', display: 'flex', alignItems: 'center', gap: 6 }}>
+                {(() => { const w = closestWeight(viewPhoto.date); return w ? <><Scale size={13} /> Peso: {w.weight} kg</> : null })()}
               </span>
-              <button className="btn btn-red btn-sm" onClick={() => handleDelete(viewPhoto.id)}>🗑 Excluir</button>
+              <button className="btn btn-red btn-sm" onClick={() => handleDelete(viewPhoto.id)}>
+                <Trash2 size={13} /> Excluir
+              </button>
             </div>
           </>
         )}

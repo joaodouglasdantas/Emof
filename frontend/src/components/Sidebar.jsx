@@ -1,13 +1,14 @@
 import { NavLink } from 'react-router-dom'
+import { LayoutDashboard, UtensilsCrossed, Salad, Scale, Camera, BarChart2, UserCircle, User } from 'lucide-react'
 
 const LINKS = [
-  { to: '/',          icon: '🏠', label: 'Dashboard'  },
-  { to: '/refeicoes', icon: '🍽️', label: 'Refeições'  },
-  { to: '/alimentos', icon: '🥦', label: 'Alimentos'  },
-  { to: '/peso',      icon: '⚖️', label: 'Peso'       },
-  { to: '/fotos',     icon: '📸', label: 'Fotos'      },
-  { to: '/insights',  icon: '💡', label: 'Insights'   },
-  { to: '/perfil',    icon: '👤', label: 'Perfil'     },
+  { to: '/',          Icon: LayoutDashboard, label: 'Dashboard'  },
+  { to: '/refeicoes', Icon: UtensilsCrossed, label: 'Refeições'  },
+  { to: '/alimentos', Icon: Salad,           label: 'Alimentos'  },
+  { to: '/peso',      Icon: Scale,           label: 'Peso'       },
+  { to: '/fotos',     Icon: Camera,          label: 'Fotos'      },
+  { to: '/insights',  Icon: BarChart2,       label: 'Insights'   },
+  { to: '/perfil',    Icon: UserCircle,      label: 'Perfil'     },
 ]
 
 export default function Sidebar({ profile }) {
@@ -19,21 +20,21 @@ export default function Sidebar({ profile }) {
       </div>
 
       <div className="sidebar-links">
-        {LINKS.map(({ to, icon, label }) => (
+        {LINKS.map(({ to, Icon, label }) => (
           <NavLink
             key={to}
             to={to}
             end={to === '/'}
             className={({ isActive }) => `sidebar-link${isActive ? ' sidebar-link--active' : ''}`}
           >
-            <span className="sidebar-link-icon">{icon}</span>
+            <span className="sidebar-link-icon"><Icon size={18} /></span>
             <span className="sidebar-link-label">{label}</span>
           </NavLink>
         ))}
       </div>
 
       <div className="sidebar-user">
-        <div className="sidebar-user-avatar">🏋️</div>
+        <div className="sidebar-user-avatar"><User size={16} /></div>
         <div className="sidebar-user-name">{profile?.name || 'Meu Perfil'}</div>
       </div>
     </nav>

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import { Sun, Sunrise, Moon, Apple, Search, Trash2 } from 'lucide-react'
 import Modal from '../components/Modal'
 import { getMeals, addMealEntry, deleteMealEntry, getFoods } from '../api'
 import { today, fmtLong, shiftDate, calcTDEE } from '../utils'
@@ -6,10 +7,10 @@ import { useProfile } from '../App'
 import { useToast } from '../App'
 
 const MEAL_DEFS = [
-  { key: 'breakfast', name: 'Café da Manhã', icon: '☀️' },
-  { key: 'lunch',     name: 'Almoço',        icon: '🌞' },
-  { key: 'dinner',    name: 'Jantar',        icon: '🌙' },
-  { key: 'snacks',    name: 'Lanches',       icon: '🍎' },
+  { key: 'breakfast', Icon: Sun,     name: 'Café da Manhã' },
+  { key: 'lunch',     Icon: Sunrise, name: 'Almoço'        },
+  { key: 'dinner',    Icon: Moon,    name: 'Jantar'         },
+  { key: 'snacks',    Icon: Apple,   name: 'Lanches'        },
 ]
 
 export default function Meals() {
@@ -97,7 +98,8 @@ export default function Meals() {
           <div key={m.key} className="meal-block">
             <div className="meal-block-header">
               <div className="meal-block-name">
-                {m.icon} {m.name}
+                <m.Icon size={17} />
+                {m.name}
                 <span className="meal-block-cal">{mc} kcal</span>
               </div>
               <button className="btn btn-green btn-sm" onClick={() => openAdd(m.key, m.name)}>+ Adicionar</button>
@@ -112,7 +114,9 @@ export default function Meals() {
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                     <span className="food-row-cals">{item.total_cals} kcal</span>
-                    <button className="btn btn-red btn-sm" onClick={() => handleRemove(item.id)}>✕</button>
+                    <button className="btn btn-red btn-sm" onClick={() => handleRemove(item.id)}>
+                      <Trash2 size={13} />
+                    </button>
                   </div>
                 </div>
               ))
@@ -121,9 +125,9 @@ export default function Meals() {
         )
       })}
 
-      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title={`➕ Adicionar em: ${selectedMeal?.name}`} width={500}>
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title={`Adicionar em: ${selectedMeal?.name}`} width={500}>
         <div className="search-wrap">
-          <span className="search-icon">🔍</span>
+          <span className="search-icon"><Search size={16} /></span>
           <input className="form-input" placeholder="Buscar alimento..." value={search} onChange={e => { setSearch(e.target.value); setPickedFood(null) }} />
         </div>
         <div style={{ maxHeight: 220, overflowY: 'auto', marginBottom: 14 }}>
@@ -159,7 +163,7 @@ export default function Meals() {
             </div>
             <div className="fx-end">
               <button className="btn btn-ghost" onClick={() => setModalOpen(false)}>Cancelar</button>
-              <button className="btn btn-green" onClick={handleAdd}>✓ Adicionar</button>
+              <button className="btn btn-green" onClick={handleAdd}>Adicionar</button>
             </div>
           </>
         )}

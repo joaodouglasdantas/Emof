@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Chart, registerables } from 'chart.js'
+import { Flame, TrendingDown, Scale, BarChart2, UtensilsCrossed, Lightbulb, AlertTriangle, AlertCircle, CheckCircle, ClipboardList, Trophy, Dumbbell } from 'lucide-react'
 import { getMealSummary, getWeight } from '../api'
 import { useProfile } from '../App'
 import { today, fmtShort, calcTDEE, getLast14Days } from '../utils'
@@ -101,13 +102,13 @@ export default function Insights() {
   const estLoss = (avgDeficit * 14 / 7700).toFixed(2)
 
   const tips = []
-  if (avgCals > 0 && avgCals < goal * 0.75) tips.push({ i: '⚠️', t: 'Sua ingestão está muito abaixo da meta. Um déficit excessivo pode prejudicar sua saúde e metabolismo.' })
-  if (avgCals > goal * 1.15) tips.push({ i: '🔴', t: 'Sua média calórica está acima da meta. Tente reduzir porções ou substituir alimentos calóricos.' })
-  if (avgCals >= goal * 0.85 && avgCals <= goal * 1.1) tips.push({ i: '✅', t: 'Parabéns! Sua ingestão calórica está dentro da meta. Continue assim!' })
-  if (weights.length < 3) tips.push({ i: '📝', t: 'Registre seu peso com mais frequência para análises mais precisas da sua evolução.' })
-  if (parseFloat(totalLoss) > 0) tips.push({ i: '🎉', t: `Você perdeu ${totalLoss} kg desde o início dos seus registros. Excelente progresso!` })
-  if (activeDays.length < 10) tips.push({ i: '📋', t: 'Tente registrar suas refeições todos os dias para obter análises mais confiáveis.' })
-  if (!tips.length) tips.push({ i: '💪', t: 'Continue mantendo seus registros! Com mais dados, os insights ficarão cada vez mais detalhados.' })
+  if (avgCals > 0 && avgCals < goal * 0.75) tips.push({ Icon: AlertTriangle, color: 'var(--yellow)', t: 'Sua ingestão está muito abaixo da meta. Um déficit excessivo pode prejudicar sua saúde e metabolismo.' })
+  if (avgCals > goal * 1.15) tips.push({ Icon: AlertCircle, color: 'var(--red)', t: 'Sua média calórica está acima da meta. Tente reduzir porções ou substituir alimentos calóricos.' })
+  if (avgCals >= goal * 0.85 && avgCals <= goal * 1.1) tips.push({ Icon: CheckCircle, color: 'var(--green)', t: 'Parabéns! Sua ingestão calórica está dentro da meta. Continue assim!' })
+  if (weights.length < 3) tips.push({ Icon: ClipboardList, color: 'var(--blue)', t: 'Registre seu peso com mais frequência para análises mais precisas da sua evolução.' })
+  if (parseFloat(totalLoss) > 0) tips.push({ Icon: Trophy, color: 'var(--yellow)', t: `Você perdeu ${totalLoss} kg desde o início dos seus registros. Excelente progresso!` })
+  if (activeDays.length < 10) tips.push({ Icon: ClipboardList, color: 'var(--blue)', t: 'Tente registrar suas refeições todos os dias para obter análises mais confiáveis.' })
+  if (!tips.length) tips.push({ Icon: Dumbbell, color: 'var(--green)', t: 'Continue mantendo seus registros! Com mais dados, os insights ficarão cada vez mais detalhados.' })
 
   return (
     <div>
@@ -118,26 +119,28 @@ export default function Insights() {
 
       <div className="g4">
         <div className="insight-card card">
-          <div style={{ fontSize: 26, marginBottom: 8 }}>🔥</div>
+          <div style={{ marginBottom: 8, color: 'var(--red)' }}><Flame size={26} /></div>
           <div style={{ fontSize: 34, fontWeight: 900, letterSpacing: -1 }}>{avgCals}</div>
           <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 6 }}>Média kcal/dia ({activeDays.length} dias registrados)</div>
         </div>
         <div className="insight-card card">
-          <div style={{ fontSize: 26, marginBottom: 8 }}>{avgDeficit > 0 ? '✅' : '⚠️'}</div>
+          <div style={{ marginBottom: 8, color: avgDeficit > 0 ? 'var(--green)' : 'var(--red)' }}>
+            <TrendingDown size={26} />
+          </div>
           <div style={{ fontSize: 34, fontWeight: 900, color: avgDeficit > 0 ? 'var(--green)' : 'var(--red)', letterSpacing: -1 }}>
             {avgDeficit > 0 ? '-' : '+'}{Math.abs(avgDeficit)}
           </div>
           <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 6 }}>Déficit calórico médio (kcal)</div>
         </div>
         <div className="insight-card card">
-          <div style={{ fontSize: 26, marginBottom: 8 }}>⚖️</div>
+          <div style={{ marginBottom: 8, color: 'var(--blue)' }}><Scale size={26} /></div>
           <div style={{ fontSize: 34, fontWeight: 900, color: parseFloat(totalLoss) > 0 ? 'var(--green)' : 'var(--muted)', letterSpacing: -1 }}>
             {parseFloat(totalLoss) > 0 ? '-' : ''}{Math.abs(totalLoss)} kg
           </div>
           <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 6 }}>Perda total registrada</div>
         </div>
         <div className="insight-card card">
-          <div style={{ fontSize: 26, marginBottom: 8 }}>📉</div>
+          <div style={{ marginBottom: 8, color: 'var(--green)' }}><TrendingDown size={26} /></div>
           <div style={{ fontSize: 34, fontWeight: 900, color: parseFloat(estLoss) > 0 ? 'var(--green)' : 'var(--muted)', letterSpacing: -1 }}>
             {parseFloat(estLoss) > 0 ? '-' : ''}{Math.abs(estLoss)} kg
           </div>
@@ -147,11 +150,15 @@ export default function Insights() {
 
       <div className="g2 mt6">
         <div className="card">
-          <div className="card-title">🔥 Calorias por Dia</div>
+          <div className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <Flame size={14} /> Calorias por Dia
+          </div>
           <div className="chart-wrap"><canvas ref={calChartRef} /></div>
         </div>
         <div className="card">
-          <div className="card-title">🍽️ Distribuição por Refeição</div>
+          <div className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <UtensilsCrossed size={14} /> Distribuição por Refeição
+          </div>
           {mealDist && Object.values(mealDist).some(v => v > 0)
             ? <div className="chart-wrap"><canvas ref={distChartRef} /></div>
             : <div className="empty" style={{ padding: 32 }}><p>Sem dados suficientes</p></div>
@@ -160,11 +167,13 @@ export default function Insights() {
       </div>
 
       <div className="card mt6">
-        <div className="card-title">💡 Dicas e Análise</div>
-        {tips.map((t, i) => (
+        <div className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <Lightbulb size={14} /> Dicas e Análise
+        </div>
+        {tips.map((tip, i) => (
           <div key={i} style={{ display: 'flex', gap: 14, padding: '14px 0', borderBottom: '1px solid var(--border)', alignItems: 'flex-start' }}>
-            <span style={{ fontSize: 22, flexShrink: 0 }}>{t.i}</span>
-            <p style={{ fontSize: 13.5, lineHeight: 1.6 }}>{t.t}</p>
+            <span style={{ color: tip.color, flexShrink: 0, marginTop: 1 }}><tip.Icon size={20} /></span>
+            <p style={{ fontSize: 13.5, lineHeight: 1.6 }}>{tip.t}</p>
           </div>
         ))}
       </div>

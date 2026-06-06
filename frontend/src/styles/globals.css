@@ -50,7 +50,7 @@ body {
 .stat-card.red::before    { background: var(--red); }
 .stat-card.blue::before   { background: var(--blue); }
 .stat-card.yellow::before { background: var(--yellow); }
-.stat-icon  { font-size: 22px; margin-bottom: 10px; }
+.stat-icon  { margin-bottom: 10px; display: flex; align-items: center; }
 .stat-value { font-size: 32px; font-weight: 900; line-height: 1; letter-spacing: -1px; }
 .stat-label { font-size: 12px; color: var(--muted); margin-top: 5px; }
 .stat-sub   { font-size: 12px; margin-top: 6px; }
@@ -162,7 +162,7 @@ select.form-input {
 .w-full     { width: 100%; }
 
 .empty      { text-align: center; padding: 52px 24px; color: var(--muted); }
-.empty-icon { font-size: 48px; margin-bottom: 14px; }
+.empty-icon { margin-bottom: 14px; display: flex; justify-content: center; }
 .empty h3   { font-size: 16px; color: var(--text); margin-bottom: 6px; }
 .empty p    { font-size: 13.5px; }
 
@@ -172,6 +172,7 @@ select.form-input {
   border-radius: 14px; padding: 14px 20px; font-size: 13.5px;
   z-index: 9999; border-left: 4px solid var(--green); max-width: 320px;
   animation: slideUp .3s ease; overflow: hidden; word-break: break-word;
+  display: flex; align-items: center; gap: 10px;
 }
 .toast.error { border-left-color: var(--red); }
 
@@ -218,7 +219,7 @@ hr.div { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
 }
 .sidebar-link:hover { color: var(--text); }
 .sidebar-link--active { color: var(--green); border-left-color: var(--green); background: rgba(0,216,132,.06); }
-.sidebar-link-icon  { font-size: 17px; min-width: 22px; text-align: center; }
+.sidebar-link-icon  { min-width: 22px; text-align: center; display: flex; align-items: center; justify-content: center; }
 .sidebar-user {
   padding: 16px 20px; border-top: 1px solid var(--border);
   display: flex; align-items: center; gap: 10px;

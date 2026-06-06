@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import { CheckCircle, XCircle } from 'lucide-react'
 import { useState, useEffect, useCallback, createContext, useContext } from 'react'
 import Sidebar    from './components/Sidebar'
 import Dashboard  from './pages/Dashboard'
@@ -49,7 +50,11 @@ export default function App() {
           </main>
           {toast && (
             <div className={`toast ${toast.type === 'error' ? 'error' : ''}`}>
-              {toast.type === 'success' ? '✅ ' : '❌ '}{toast.msg}
+              {toast.type === 'success'
+                ? <CheckCircle size={15} style={{ flexShrink: 0 }} />
+                : <XCircle size={15} style={{ flexShrink: 0 }} />
+              }
+              {toast.msg}
             </div>
           )}
         </div>

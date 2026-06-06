@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import { Salad, Search, Trash2 } from 'lucide-react'
 import Modal from '../components/Modal'
 import { getFoods, addFood, deleteFood } from '../api'
 import { useToast } from '../App'
@@ -45,14 +46,14 @@ export default function Foods() {
       </div>
 
       <div className="search-wrap">
-        <span className="search-icon">🔍</span>
+        <span className="search-icon"><Search size={16} /></span>
         <input className="form-input" placeholder="Buscar alimento..." value={search} onChange={e => setSearch(e.target.value)} />
       </div>
 
       <div className="card">
         {filtered.length === 0 ? (
           <div className="empty">
-            <div className="empty-icon">🥦</div>
+            <div className="empty-icon"><Salad size={48} strokeWidth={1} /></div>
             <h3>Nenhum alimento encontrado</h3>
             <p>Adicione alimentos para montar suas refeições</p>
           </div>
@@ -70,7 +71,11 @@ export default function Foods() {
                   <td>{f.protein ? f.protein + 'g' : '—'}</td>
                   <td>{f.carbs   ? f.carbs   + 'g' : '—'}</td>
                   <td>{f.fat     ? f.fat     + 'g' : '—'}</td>
-                  <td><button className="btn btn-red btn-sm" onClick={() => handleDelete(f.id)}>✕ Excluir</button></td>
+                  <td>
+                    <button className="btn btn-red btn-sm" onClick={() => handleDelete(f.id)}>
+                      <Trash2 size={13} /> Excluir
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -78,7 +83,7 @@ export default function Foods() {
         )}
       </div>
 
-      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="🥦 Novo Alimento">
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="Novo Alimento">
         <div className="form-group">
           <label className="form-label">Nome do Alimento *</label>
           <input className="form-input" placeholder="ex: Arroz branco cozido" value={form.name} onChange={set('name')} />

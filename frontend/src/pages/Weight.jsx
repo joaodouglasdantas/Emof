@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
+import { TrendingDown, BarChart2, Scale, Trash2 } from 'lucide-react'
 import { Chart, registerables } from 'chart.js'
 import Modal from '../components/Modal'
 import { getWeight, addWeight, deleteWeight } from '../api'
@@ -80,14 +81,18 @@ export default function Weight() {
 
       <div className="g2">
         <div className="card">
-          <div className="card-title">📉 Evolução (últimos 30 registros)</div>
+          <div className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <TrendingDown size={14} /> Evolução (últimos 30 registros)
+          </div>
           {sorted.length > 0
             ? <div className="chart-wrap"><canvas ref={chartRef} /></div>
             : <div className="empty" style={{ padding: 32 }}><p>Registre seu peso para ver o gráfico</p></div>
           }
         </div>
         <div className="card">
-          <div className="card-title">📊 Estatísticas</div>
+          <div className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <BarChart2 size={14} /> Estatísticas
+          </div>
           {sorted.length === 0 ? (
             <p style={{ color: 'var(--muted)', fontSize: 13 }}>Nenhum registro ainda</p>
           ) : (
@@ -118,10 +123,12 @@ export default function Weight() {
       </div>
 
       <div className="card mt6">
-        <div className="card-title">Histórico</div>
+        <div className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <Scale size={14} /> Histórico
+        </div>
         {sorted.length === 0 ? (
           <div className="empty">
-            <div className="empty-icon">⚖️</div>
+            <div className="empty-icon"><Scale size={48} strokeWidth={1} /></div>
             <h3>Nenhum registro de peso</h3>
             <p>Registre seu peso diariamente para ver sua evolução</p>
           </div>
@@ -140,7 +147,11 @@ export default function Weight() {
                     <td>{diff !== null ? <span style={{ color: diff > 0 ? 'var(--red)' : 'var(--green)' }}>{diff > 0 ? '+' : ''}{diff} kg</span> : '—'}</td>
                     <td>{bmi}</td>
                     <td style={{ color: 'var(--muted)', fontSize: 12 }}>{w.note || '—'}</td>
-                    <td><button className="btn btn-red btn-sm" onClick={() => handleDelete(w.date)}>✕</button></td>
+                    <td>
+                      <button className="btn btn-red btn-sm" onClick={() => handleDelete(w.date)}>
+                        <Trash2 size={13} />
+                      </button>
+                    </td>
                   </tr>
                 )
               })}
@@ -149,7 +160,7 @@ export default function Weight() {
         )}
       </div>
 
-      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="⚖️ Registrar Peso" width={420}>
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="Registrar Peso" width={420}>
         <div className="form-group">
           <label className="form-label">Data *</label>
           <input className="form-input" type="date" value={form.date} onChange={e => setForm(f => ({ ...f, date: e.target.value }))} />
