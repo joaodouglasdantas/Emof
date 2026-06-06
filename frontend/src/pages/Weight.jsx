@@ -133,7 +133,7 @@ export default function Weight() {
             <p>Registre seu peso diariamente para ver sua evolução</p>
           </div>
         ) : (
-          <table className="table">
+          <div className="table-wrap"><table className="table">
             <thead><tr><th>Data</th><th>Peso</th><th>Variação</th><th>IMC</th><th>Nota</th><th></th></tr></thead>
             <tbody>
               {sorted.map((w, i) => {
@@ -156,7 +156,7 @@ export default function Weight() {
                 )
               })}
             </tbody>
-          </table>
+          </table></div>
         )}
       </div>
 

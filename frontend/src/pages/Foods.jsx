@@ -78,7 +78,7 @@ export default function Foods() {
             <p>Adicione alimentos para montar suas refeições</p>
           </div>
         ) : (
-          <table className="table">
+          <div className="table-wrap"><table className="table">
             <thead>
               <tr><th>Alimento</th><th>Porção</th><th>Calorias</th><th>Proteína</th><th>Carb.</th><th>Gordura</th><th></th></tr>
             </thead>
@@ -102,7 +102,7 @@ export default function Foods() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table></div>
         )}
       </div>
 
