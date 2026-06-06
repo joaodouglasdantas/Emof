@@ -139,6 +139,14 @@ app.post('/api/foods', (req, res) => {
   res.status(201).json(db.prepare('SELECT * FROM foods WHERE id=?').get(id))
 })
 
+app.put('/api/foods/:id', (req, res) => {
+  const { name, qty, unit, cals, protein, carbs, fat } = req.body
+  if (!name || !qty || !cals) return res.status(400).json({ error: 'Campos obrigatórios faltando' })
+  db.prepare('UPDATE foods SET name=?,qty=?,unit=?,cals=?,protein=?,carbs=?,fat=? WHERE id=?')
+    .run(name, qty, unit || 'g', cals, protein || 0, carbs || 0, fat || 0, req.params.id)
+  res.json(db.prepare('SELECT * FROM foods WHERE id=?').get(req.params.id))
+})
+
 app.delete('/api/foods/:id', (req, res) => {
   db.prepare('DELETE FROM foods WHERE id=?').run(req.params.id)
   res.json({ ok: true })

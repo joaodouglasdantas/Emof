@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Salad, Search, Trash2 } from 'lucide-react'
+import { Salad, Search, Trash2, Pencil } from 'lucide-react'
 import Modal from '../components/Modal'
-import { getFoods, addFood, deleteFood } from '../api'
+import { getFoods, addFood, updateFood, deleteFood } from '../api'
 import { useToast } from '../App'
 
 const UNITS = ['g','ml','unidade','colher de sopa','colher de chá','xícara','fatia','porção','copo (200ml)','prato']
@@ -13,6 +13,7 @@ export default function Foods() {
   const [foods, setFoods] = useState([])
   const [search, setSearch] = useState('')
   const [modalOpen, setModalOpen] = useState(false)
+  const [editingId, setEditingId] = useState(null)  // null = novo, id = editando
   const [form, setForm] = useState(EMPTY_FORM)
 
   const load = useCallback(() => getFoods().then(setFoods).catch(() => {}), [])
@@ -20,11 +21,30 @@ export default function Foods() {
 
   const filtered = foods.filter(f => f.name.toLowerCase().includes(search.toLowerCase()))
 
+  const openNew = () => {
+    setEditingId(null)
+    setForm(EMPTY_FORM)
+    setModalOpen(true)
+  }
+
+  const openEdit = (f) => {
+    setEditingId(f.id)
+    setForm({ name: f.name, qty: String(f.qty), unit: f.unit, cals: String(f.cals), protein: String(f.protein || ''), carbs: String(f.carbs || ''), fat: String(f.fat || '') })
+    setModalOpen(true)
+  }
+
   const handleSave = async () => {
     if (!form.name || !form.qty || !form.cals) return showToast('Preencha nome, porção e calorias', 'error')
+    const data = { ...form, qty: parseFloat(form.qty), cals: parseFloat(form.cals), protein: parseFloat(form.protein)||0, carbs: parseFloat(form.carbs)||0, fat: parseFloat(form.fat)||0 }
     try {
-      await addFood({ ...form, qty: parseFloat(form.qty), cals: parseFloat(form.cals), protein: parseFloat(form.protein)||0, carbs: parseFloat(form.carbs)||0, fat: parseFloat(form.fat)||0 })
-      load(); setModalOpen(false); setForm(EMPTY_FORM); showToast('Alimento cadastrado!')
+      if (editingId) {
+        await updateFood(editingId, data)
+        showToast('Alimento atualizado!')
+      } else {
+        await addFood(data)
+        showToast('Alimento cadastrado!')
+      }
+      load(); setModalOpen(false); setForm(EMPTY_FORM); setEditingId(null)
     } catch { showToast('Erro ao salvar', 'error') }
   }
 
@@ -42,7 +62,7 @@ export default function Foods() {
           <div className="page-title">Alimentos</div>
           <div className="page-sub">Banco de alimentos cadastrados</div>
         </div>
-        <button className="btn btn-green" onClick={() => { setForm(EMPTY_FORM); setModalOpen(true) }}>+ Novo Alimento</button>
+        <button className="btn btn-green" onClick={openNew}>+ Novo Alimento</button>
       </div>
 
       <div className="search-wrap">
@@ -71,9 +91,12 @@ export default function Foods() {
                   <td>{f.protein ? f.protein + 'g' : '—'}</td>
                   <td>{f.carbs   ? f.carbs   + 'g' : '—'}</td>
                   <td>{f.fat     ? f.fat     + 'g' : '—'}</td>
-                  <td>
+                  <td style={{ display: 'flex', gap: 6 }}>
+                    <button className="btn btn-ghost btn-sm" onClick={() => openEdit(f)}>
+                      <Pencil size={13} />
+                    </button>
                     <button className="btn btn-red btn-sm" onClick={() => handleDelete(f.id)}>
-                      <Trash2 size={13} /> Excluir
+                      <Trash2 size={13} />
                     </button>
                   </td>
                 </tr>
@@ -83,7 +106,7 @@ export default function Foods() {
         )}
       </div>
 
-      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="Novo Alimento">
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title={editingId ? 'Editar Alimento' : 'Novo Alimento'}>
         <div className="form-group">
           <label className="form-label">Nome do Alimento *</label>
           <input className="form-input" placeholder="ex: Arroz branco cozido" value={form.name} onChange={set('name')} />
@@ -120,7 +143,9 @@ export default function Foods() {
         </div>
         <div className="fx-end">
           <button className="btn btn-ghost" onClick={() => setModalOpen(false)}>Cancelar</button>
-          <button className="btn btn-green" onClick={handleSave}>Salvar Alimento</button>
+          <button className="btn btn-green" onClick={handleSave}>
+            {editingId ? 'Salvar Alterações' : 'Salvar Alimento'}
+          </button>
         </div>
       </Modal>
     </div>

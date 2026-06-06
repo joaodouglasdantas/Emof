@@ -5,9 +5,10 @@ const api = axios.create({ baseURL: '/api' })
 export const getProfile    = () => api.get('/profile').then(r => r.data)
 export const updateProfile = (data) => api.put('/profile', data).then(r => r.data)
 
-export const getFoods   = () => api.get('/foods').then(r => r.data)
-export const addFood    = (data) => api.post('/foods', data).then(r => r.data)
-export const deleteFood = (id) => api.delete(`/foods/${id}`)
+export const getFoods    = () => api.get('/foods').then(r => r.data)
+export const addFood     = (data) => api.post('/foods', data).then(r => r.data)
+export const updateFood  = (id, data) => api.put(`/foods/${id}`, data).then(r => r.data)
+export const deleteFood  = (id) => api.delete(`/foods/${id}`)
 
 export const getMeals       = (date) => api.get('/meals', { params: { date } }).then(r => r.data)
 export const addMealEntry   = (data) => api.post('/meals', data).then(r => r.data)
